@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        #alert{
+            display:none;
+            text-align: center;
+            width:100%;
+            color:red;
+            font-size:30px;
+            font-weight:bold;
+        }
+        *{
+            background-color:aliceblue;
+        }
+        .container{
+            width:60%;
+            max-width:700px;
+            background-color: #000000 !important;
+            border:3px solid black;
+            margin:auto;
+            margin-top: 10%;
+        }
+        .items{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            color:white;
+            width:100%;
+            margin-top:2%;
+            background-color: #000000;
+        }
+        #input{
+            background-color: white;
+            height:80px;
+            margin:0px;
+        }
+        .box{
+            width:18%;
+            margin-left:3%;
+            margin-right:2%;
+        }
+        button{
+            height:8vh;
+            width:100%;
+            margin:auto;
+            font-size:24px;
+        
+            background-color: #ffb235 !important;
+        }
+        #box-16{
+            width:41%;
+        }
+        #item-5{
+            margin-bottom: 3%;
+        }
+        #input{
+            position: relative;
+            box-sizing: border-box;
+            text-overflow: hidden;
+            color:black;
+            font-size: 44px;
+            font-weight: 200;
+        }
+        #input p{
+            overflow: hidden;
+            background-color: white;
+        }
+        @media (max-width:620px){
+            .container{
+                margin:0px;
+                width:100%;
+                min-width: none;
+                box-sizing: border-box;
+                position: absolute;
+                bottom:0;
+            }
+            #input{
+                font-size:38px;
+            }
+            button{
+                font-size:18px;
+                height:8vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="alert">
+        <p>IT CAN CALCULATES UPTO 15 LETTERS ONLY.</p>
+    </div>
+    <div class="container">
+        <div class="items" id="input">
+            <p> </p>
+        </div>
+        <div class="items" id="item-1">
+            <div class="box" id="box-1">
+                <button onclick="z(100)">AC</button></div>
+            <div class="box" id="box-2">
+                <button onclick="z(99)">C</button></div>
+            <div class="box" id="box-3">
+                <button onclick="z(98)">%</button></div>
+            <div class="box" id="box-4444">
+                <button onclick="z(97)">/</button></div>
+        </div>
+        <div class="items" id="item-2">
+            <div class="box" id="box-4">
+                <button onclick="z(7)">7</button></div>
+            <div class="box" id="box-5">
+                <button onclick="z(8)">8</button></div>
+            <div class="box" id="box-6">
+                <button onclick="z(9)">9</button></div>
+            <div class="box" id="box-7">
+                <button onclick="z(96)">*</button></div>
+        </div>
+        <div class="items" id="item-3">
+            <div class="box" id="box-8">
+                <button onclick="z(4)">4</button></div>
+            <div class="box" id="box-9">
+                <button onclick="z(5)">5</button></div>
+            <div class="box" id="box-10">
+                <button onclick="z(6)">6</button></div>
+            <div class="box" id="box-11">
+                <button onclick="z(95)">-</button></div>
+        </div>
+        <div class="items" id="item-4">
+            <div class="box" id="box-12">
+                <button onclick="z(1)">1</button></div>
+            <div class="box" id="box-13">
+                <button onclick="z(2)">2</button></div>
+            <div class="box" id="box-14">
+                <button onclick="z(3)">3</button></div>
+            <div class="box" id="box-15">
+                <button onclick="z(94)">+</button></div>
+        </div>
+        <div class="items" id="item-5">
+            <div class="box" id="box-16">
+                <button onclick="z(0)">0</button></div>
+            <div class="box" id="box-18">
+                <button onclick="z(93)">.</button></div>
+            <div class="box" id="box-19">
+                <button onclick="z(92)">=</button></div>
+        </div>
+    </div>
+    <script>
+        var i=0
+        var q=0
+        s=[]
+        function z(n){
+            if(i<=15){
+                document.getElementById('alert').style.display='none'
+                if (n<=100 & n>92){
+                if(q==1){
+                    s[0]=b
+                    i=1
+                    q=0
+                }
+                if(n==93){
+                    s[i]="."
+                    i=i+1
+                }
+                else if(n==94){
+                    s[i]="+"
+                    i=i+1
+                }
+                else if(n==95){
+                    s[i]="-"
+                    i=i+1
+                }
+                else if(n==96){
+                    s[i]="*"
+                    i=i+1
+                }
+                else if(n==97){
+                    s[i]="/"
+                    i=i+1
+                }
+                else if(n==98){
+                    s[i]="%"
+                    i=i+1
+                }
+                else if(n==99){
+                    if (i==0){
+                        s=s
+                    }
+                    else{
+                        s.splice(i-1,1)
+                        i=i-1
+                    }
+                }else if(n==100){
+                    s=[]
+                    i=0
+                }
+            }
+            else if(n!=92){
+                q=0
+                s[i]=n
+                i=i+1
+            }
+            if(n==92){
+                    b=document.getElementById('input').firstElementChild.innerHTML=eval(s.join(''))
+                    b
+                    s=[]
+                    i=0
+                    q=1
+                }
+            else{
+                document.getElementById('input').firstElementChild.innerHTML=s.join('')
+            a=s.join('')
+            }
+            }
+            else{
+                if(n==99){
+                    if (i==0){
+                        s=s
+
+                    }
+                    else{
+                        s.splice(i-1,1)
+                        i=i-1
+                    }
+                    document.getElementById('alert').style.display='none'
+                    document.getElementById('input').firstElementChild.innerHTML=s.join('')
+                }
+                else if(n==100){
+                    s=[]
+                    i=0
+                    document.getElementById('alert').style.display='none'
+                    document.getElementById('input').firstElementChild.innerHTML=s.join('')
+                }
+                else{
+                    document.getElementById('alert').style.display='block'
+                }
+            }
+        }
+    </script>
+</body>
+</html>
